@@ -16,8 +16,8 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
    
-        $adminRole = Role::create(['name' => 'Admin']);
-        $userRole = Role::create(['name' => 'User']);
+        $adminRole=Role::firstOrCreate(['name' => 'Admin', 'guard_name' => 'api']);
+        $userRole=Role::firstOrCreate(['name' => 'User', 'guard_name' => 'api']);
 
      
         $permissions = [
@@ -35,7 +35,7 @@ class RolePermissionSeeder extends Seeder
         ];
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'api']);
         }
 
      
